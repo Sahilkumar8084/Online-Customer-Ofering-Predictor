@@ -93,8 +93,8 @@ st.divider()
 
 if st.button("🔍 Predict Purchase", use_container_width=True):
 
-    scaler = joblib.load('models\scaler.pkl')
-    model = joblib.load('models\decision_tree_model.pkl')
+    scaler = joblib.load('models\\scaler.pkl')
+    model = joblib.load('models\\decision_tree_model.pkl')
 
     X_scaled = scaler.transform(X)
     prediction = model.predict(X_scaled)[0]
