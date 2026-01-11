@@ -1,3 +1,5 @@
+
+
 import streamlit as st
 import pandas as pd
 import joblib
@@ -29,7 +31,7 @@ with col2:
     gender = st.radio("Gender", ["Male", "Female"])
     previous_purchases = st.number_input("Previous Purchases", min_value=0, value=35)
     visit_frequency = st.radio("Visit Frequency", ["Low", "Medium", "High"])
-    offering_type = st.radio("Offering Type", ["Product", "Service"])
+    # offering_type = st.radio("Offering Type", ["Product", "Service"])
 
 st.subheader("🎯 Marketing & Offer Details")
 
@@ -56,7 +58,7 @@ customer_data = {
     "Previous_Purchases": previous_purchases,
     "Spending_Score": spending_score,
     "Engagement_Level": engagement_level,
-    "Offering_Type": offering_type,
+    # "Offering_Type": offering_type,
     "Offering_Category": offering_category,
     "Discount_Used": discount_used,
     "Promo_Used": promo_used,
@@ -67,7 +69,7 @@ df = pd.DataFrame([customer_data])
 
 # Binary Encoding
 df['Gender'] = df['Gender'].map({'Male': 1, 'Female': 0})
-df['Offering_Type'] = df['Offering_Type'].map({'Service': 1, 'Product': 0})
+# df['Offering_Type'] = df['Offering_Type'].map({'Service': 1, 'Product': 0})
 df['Discount_Used'] = df['Discount_Used'].map({'Yes': 1, 'No': 0})
 df['Promo_Used'] = df['Promo_Used'].map({'Yes': 1, 'No': 0})
 
@@ -86,15 +88,14 @@ df['Visit_Frequency'] = df['Visit_Frequency'].map(size_map)
 df['Engagement_Level'] = df['Engagement_Level'].map(size_map)
 
 # Features & Target
-X = df.drop("Offering_Type", axis=1)
-
+X=df
 # -------------------- PREDICTION --------------------
 st.divider()
 
 if st.button("🔍 Predict Purchase", use_container_width=True):
 
-    scaler = joblib.load('scaler.pkl')
-    model = joblib.load('decision_tree_model.pkl')
+    scaler = joblib.load(r'models\scaler.pkl')
+    model = joblib.load(r'models\decision_tree_model.pkl')
 
     X_scaled = scaler.transform(X)
     prediction = model.predict(X_scaled)[0]
@@ -108,5 +109,4 @@ if st.button("🔍 Predict Purchase", use_container_width=True):
 
     with st.expander("🔎 View Processed Input Data"):
         st.dataframe(df)
-
 
