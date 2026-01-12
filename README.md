@@ -1,4 +1,5 @@
 
+
 # 🛒 Customer Purchase Prediction Web App
 
 <p align="center">
@@ -9,10 +10,17 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/status-active-success" />
-  <img src="https://img.shields.io/badge/deployment-ready-brightgreen" />
+  <img src="https://img.shields.io/badge/status-live-success" />
+  <img src="https://img.shields.io/badge/deployed-Streamlit%20Cloud-brightgreen" />
   <img src="https://img.shields.io/badge/license-educational-lightgrey" />
 </p>
+
+---
+
+## 🌐 Live Application
+
+🚀 **Deployed App**:
+👉 [https://online-customer-ofering-predictor.streamlit.app/](https://online-customer-ofering-predictor.streamlit.app/)
 
 ---
 
@@ -20,28 +28,28 @@
 
 The **Customer Purchase Prediction Web App** is a **machine learning–powered Streamlit application** that predicts whether a customer is more likely to purchase a **Product** or a **Service** based on demographic, behavioral, and engagement data.
 
-This project demonstrates a **complete end-to-end ML workflow**, from preprocessing and feature engineering to model inference and web deployment.
+This project showcases a **complete end-to-end ML workflow**, including preprocessing, feature encoding, scaling, model inference, and cloud deployment.
 
 ---
 
 ## 📌 Project Overview
 
-Understanding customer purchasing behavior helps businesses:
+Businesses use customer behavior analysis to:
 
 * 🎯 Improve marketing strategies
-* 🧩 Personalize offerings
+* 🧩 Personalize product offerings
 * 📈 Increase conversion rates
 
-This application allows users to input customer attributes and instantly receive a prediction using a trained **Decision Tree Classifier**.
+This application enables instant predictions using a trained **Decision Tree Classifier**.
 
 ---
 
 ## 🎯 Objective
 
-To build a **user-friendly ML web application** that:
+To build a **user-friendly ML web app** that:
 
 * Collects customer data through an interactive UI
-* Applies the **same preprocessing used during model training**
+* Applies **training-consistent preprocessing**
 * Predicts purchase type accurately
 * Displays results in a clean, professional interface
 
@@ -60,9 +68,9 @@ To build a **user-friendly ML web application** that:
 
 * 🌳 **Decision Tree Classifier**
 
-  * Interpretable and intuitive
-  * Handles mixed feature types well
-  * Ideal for beginner–intermediate ML projects
+  * Interpretable and efficient
+  * Handles mixed data types
+  * Ideal for internship-ready ML projects
 
 ---
 
@@ -79,13 +87,11 @@ To build a **user-friendly ML web application** that:
 | Visit_Frequency    | Low / Medium / High             |
 | Discount_Used      | Yes / No                        |
 | Promo_Used         | Yes / No                        |
-| Offering_Category  | Type of product/service offered |
+| Offering_Category  | Type of offering                |
 
 ---
 
 ## 🔄 Data Preprocessing
-
-To maintain **training–inference consistency**, the following steps are applied:
 
 ### 1️⃣ Binary Encoding
 
@@ -100,14 +106,6 @@ Promo_Used → Yes = 1, No = 0
 
 ### 2️⃣ Manual One-Hot Encoding (Critical)
 
-The model was trained using:
-
-```python
-pd.get_dummies(..., drop_first=True)
-```
-
-To prevent feature mismatch in Streamlit, **manual one-hot encoding** is implemented:
-
 ```text
 Offering_Category_Consulting
 Offering_Category_Electronics
@@ -115,13 +113,7 @@ Offering_Category_Food
 Offering_Category_Streaming
 ```
 
-⚠️ `Subscription` is excluded because it is the **baseline category** due to `drop_first=True`.
-
-✅ Ensures:
-
-* No missing columns
-* No scaler mismatch
-* Full compatibility with the trained model
+⚠️ `Subscription` is the baseline category (`drop_first=True`).
 
 ---
 
@@ -133,18 +125,13 @@ Medium = 2
 High = 3
 ```
 
-Applied to:
-
-* Engagement_Level
-* Visit_Frequency
-
 ---
 
 ### 4️⃣ Feature Scaling
 
-* **StandardScaler** is used
-* Pre-fitted scaler is loaded using `joblib`
-* Prevents data leakage and incorrect predictions
+* **StandardScaler**
+* Pre-fitted scaler loaded via `joblib`
+* Ensures correct inference
 
 ---
 
@@ -152,16 +139,11 @@ Applied to:
 
 ### UI Highlights
 
-* 🎨 Clean and responsive layout
-* 📋 Organized input sections
-* ▶️ Predict button
-* 📊 Highlighted output result
-* 🔍 Expandable processed-data view
-
-### Prediction Output
-
-* ✅ **Product Purchase**
-* 🔵 **Service Purchase**
+* Clean, responsive layout
+* Organized input fields
+* Predict button
+* Clear prediction output
+* Expandable processed-data section
 
 ---
 
@@ -174,73 +156,31 @@ Enginow Internship Project/
 │   ├── scaler.pkl
 │   └── decision_tree_model.pkl
 │
-├── p1.py                  # Streamlit application
-├── requirements.txt       # Dependencies
-├── README.md              # Documentation
-└── venv/                  # Virtual environment
+├── p1.py
+├── requirements.txt
+├── README.md
+└── venv/
 ```
 
 ---
 
 ## ⚙️ Installation & Setup
 
-### 1️⃣ Clone the Repository
-
 ```bash
 git clone <repository-url>
 cd Enginow-Internship-Project
-```
-
-### 2️⃣ Create Virtual Environment
-
-```bash
-python -m venv venv
-```
-
-### 3️⃣ Activate Environment
-
-**Windows**
-
-```bash
-venv\Scripts\activate
-```
-
-**Linux / macOS**
-
-```bash
-source venv/bin/activate
-```
-
-### 4️⃣ Install Dependencies
-
-```bash
 pip install -r requirements.txt
-```
-
----
-
-## ▶️ Run the Application
-
-```bash
 streamlit run p1.py
-```
-
-The app will open at:
-
-```
-http://localhost:8501
 ```
 
 ---
 
 ## 📦 Requirements
 
-Main libraries used:
-
-* `streamlit`
-* `pandas`
-* `scikit-learn`
-* `joblib`
+* streamlit
+* pandas
+* scikit-learn
+* joblib
 
 ---
 
@@ -249,37 +189,33 @@ Main libraries used:
 ```text
 User Input
    ↓
-Encoding (Binary / One-Hot / Ordinal)
+Preprocessing
    ↓
-Feature Scaling (StandardScaler)
+Scaling
    ↓
 Decision Tree Model
    ↓
-Prediction (Product / Service)
+Prediction
 ```
 
 ---
 
 ## 🚀 Future Improvements
 
-* Add prediction **probability scores**
-* Use **Random Forest / XGBoost**
-* Implement **Sklearn Pipelines**
-* Deploy on **Streamlit Cloud**
-* Add **database integration**
-* User authentication system
+* Prediction probability scores
+* Advanced models (Random Forest, XGBoost)
+* ML Pipelines
+* Database integration
+* User authentication
 
 ---
 
 ## 🏆 Learning Outcomes
 
-This project helped me gain hands-on experience in:
-
-* End-to-end ML pipeline design
-* Correct categorical encoding strategies
-* Preventing feature mismatch errors
-* Deploying ML models using Streamlit
-* Writing production-quality ML applications
+* End-to-end ML deployment
+* Feature engineering consistency
+* Model inference in production
+* Streamlit cloud deployment
 
 ---
 
@@ -293,11 +229,10 @@ India 🇮🇳
 
 ## 📜 License
 
-This project is intended for **educational and internship purposes**.
-You are free to modify and extend it.
+Educational & internship use.
 
 ---
 
-⭐ **If you found this project useful, consider giving it a star!**
+⭐ **Live project deployed and production-ready!**
 
-
+Just say the word 👍
